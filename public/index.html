@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+    <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
+
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+
+
+    <div id="gameArea"></div>
+
+    <script id="hello-screen-template" type="text/template">
+        <div class="titleWrapper">
+            <div class="title">
+                TANK
+            </div>
+            <div class="buttons">
+                <button id="btnCreateGame" class="btn createGame">CREATE</button>
+                <button id="btnJoinGame" class="btn joinGame">JOIN</button>
+                <div style="clear:both"></div>
+            </div>
+        </div>
+
+    </script>
+
+
+    <script id="create-game-template" type="text/template">
+        <div class="createGameWrapper">
+            <div class="info">Open this site on your mobile device:</div>
+            <div id="gameURL" class="infoBig">Error!</div>
+            <div class="info">Then click <strong>JOIN</strong> and <br/> enter the following Game ID:</div>
+            <div id="spanNewGameCode" class="gameId">Error!</div>
+            <div id="playersWaiting"></div>
+        </div>
+
+    </script>
+
+    <script id="join-game-template" type="text/template">
+       <div class="joinGameWrapper">
+           <div class="info">
+               <label for="inputPlayerName">Your Name:</label>
+               <input id="inputPlayerName" type="text" />
+           </div>
+
+           <div class="info">
+               <label for="inputGameId">Game ID:</label>
+               <input id="inputGameId" type="text"/>
+           </div>
+
+           <div class="info buttons">
+               <button id="btnStart" class="btn">Start</button>
+               <div id="playerWaitingMessage"></div>
+           </div>
+       </div>
+   </script>
+
+   <script id="game-field-template" type="text/template">
+        <!-- <canvas id='gameFieldArea'></canvas> -->
+        <div id="gameFieldArea"></div>
+        <div id="statFieldArea">
+            <div class="statisticTitle">
+                <span>STATISTIC <br> GAME</span>
+            </div>
+        </div>
+    </script>
+
+
+
+    <script src="libs/jquery-2.0.2.min.js"></script>
+    <script src="libs/textFit.min.js"></script>
+    <script src="libs/fastclick.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>

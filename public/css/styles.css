@@ -1,0 +1,308 @@
+
+html, body {
+    background-color: #000;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* ******************************
+              BUTTONS!
+
+   ****************************** */
+
+.btn {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 15px;
+    color: #ECFFE0;
+    font-family: sans-serif;
+    font-weight: 700;
+    font-size: 2em;
+    line-height: 1.2;
+    text-align: center;
+    background-color: blue;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.btn:focus {
+    outline: thin dotted #333;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+
+.btn:hover,
+.btn:focus {
+    color: #00BE21;
+    text-decoration: none;
+}
+
+.btn:active,
+.btn.active {
+    outline: 0;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.createGame {
+
+}
+
+.joinGame {
+
+}
+
+
+/* ******************************
+          TITLE SCREEN
+     (hello-screen-template)
+   ****************************** */
+
+#gameArea {
+    height: 100%;
+    width: 100%;
+    background: url(../img/tankLogo.png);
+    background-repeat: repeat-y;
+    -moz-background-size: 100%;
+   -webkit-background-size: 100%;
+   -o-background-size: 100%;
+   background-size: 100%;
+}
+
+    .titleWrapper {
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 400;
+        position: absolute;
+        height: 60%;
+        width: 50%;
+        margin: 5% 5% auto auto;
+        bottom: 0;
+        left: 0;
+        top: 0;
+        right: 0;
+
+    }
+
+        .title {
+            margin: 0px auto;
+            text-align: center;
+            width: 100%;
+            font-family: sans-serif;
+            color: #fff;
+            font-weight: 400;
+        }
+
+        .buttons {
+            width: 100%;
+            text-align: center;
+        }
+
+
+/* ******************************
+          TITLE SCREEN
+     (hello-screen-template)
+   ****************************** */
+
+.createGameWrapper, .joinGameWrapper, .gameOver {
+    font-family: 'Quicksand', sans-serif;
+    /*margin: 0 auto;*/
+    text-align: center;
+
+    position: absolute;
+    height: 70%;
+    width: 50%;
+    margin: 5% 8% auto auto;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    right: 0;
+    /*overflow:hidden;*/
+  }
+
+
+    .createGameWrapper{
+       color: #fff;
+       font-weight: 300;
+    }
+
+        .createGameWrapper .info{
+        color: #fff;
+        font-weight: 400;
+        font-size: 2em;
+        margin-top: 1.5em;
+        }
+
+            .info label {
+                display: block;
+            }
+
+            .info input {
+                text-align: center;
+                padding: 10px;
+                width: 200px;
+                height: 60px;
+                font-family: 'Quicksand', sans-serif;
+                color: #fff;
+                font-weight: 300;
+                font-size: 54px;
+                border: 1px dotted white;
+                border-radius: 10px;
+                background: transparent;
+            }
+
+            .info input#inputPlayerName {
+                width: 90%;
+            }
+
+
+    /* ******************************
+             JOIN SCREEN
+        (join-game-template)
+    ****************************** */
+
+    .joinGameWrapper {
+
+        position: absolute;
+        height: 70%;
+        width: 50%;
+        margin: 5% 8% auto auto;
+        bottom: 0;
+        left: 0;
+        top: 0;
+        right: 0;
+    }
+
+        .joinGameWrapper .info {
+            font-size: 1.5em;
+            color: #fff;
+            height: 30%;
+            padding-top: 1%;
+        }
+
+        .joinGameWrapper .btn {
+            width: 100%;
+            height: 50%;
+        }
+
+        #playerWaitingMessage {
+            font-size: .8em;
+        }
+
+        .createGameWrapper #gameURL {
+            font-size: 4em;
+        }
+
+        .createGameWrapper .gameId {
+            font-size: 8em;
+        }
+
+        /* ******************************
+                 GAME SCREEN
+            (game-field-template)
+         ****************************** */
+
+        #gameFieldArea {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            /*margin:10px;*/
+            /*border: 1px solid yellow;*/
+            background-color: #fff;
+            float:left;
+        }
+
+            .wallContainer {
+                position: absolute;
+                background: url(../img/wall2.png) no-repeat;
+                background-size: cover;
+
+            }
+
+            .tankContainer {
+                width:40px;
+                height:40px;
+                position: absolute;
+                left:0px; top:0px;
+                background: url(../img/tankRight.png) no-repeat;
+                background-size: 100% 100%;
+            }
+
+                .tankContainerWarning {
+                    width:40px !important;
+                    height:40px !important;
+                    border:3px solid red;
+                    margin:-3px 0 0 -3px;
+                }
+
+            .bigFuckingShot {
+                width:15px;
+                height:15px;
+                position: absolute;
+                background: url(../img/bullet_sprite.png) no-repeat;
+                /*background-size: 100% 100%;*/
+            }
+
+            .boom {
+                width:25px;
+                height:25px;
+                position: absolute;
+                background: url(../img/babah.jpg) no-repeat;
+            }
+
+            .statisticArea{
+                position: absolute;
+                background-color: #000;
+            }
+
+        #statFieldArea {
+            width:200px;
+            height: 100%;
+            float:left;
+            color: #fff;
+        }
+
+            .statName {
+                /*text-decoration: underline;*/
+                letter-spacing:2px;
+                color:#275EBC;
+                font-size:20px;
+            }
+
+            .statPlayer .statKill, .statDead {
+                text-decoration: none;
+                color:#fff;
+                font-size:12px;
+            }
+
+
+
+
+
+/* ******************************
+         MOBILE STYLES
+
+ ****************************** */
+
+
+
+@media only screen and (max-width : 568px) {
+
+    .createGameWrapper .info{
+        color: #fff;
+        font-weight: 400;
+        font-size: 1.5em;
+        margin-top: 1em;
+    }
+
+}

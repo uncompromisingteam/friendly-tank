@@ -1,0 +1,27 @@
+{
+  "name": "fliendly-tank",
+  "version": "0.0.1",
+  "description": "fliendly-tank",
+  "engines": {
+    "node": "5.9.1"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "3.x",
+    "socket.io": "0.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uncompromisingteam/fliendly-tank"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT"
+}
+
