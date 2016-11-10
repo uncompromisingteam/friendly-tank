@@ -9,7 +9,7 @@ app.configure(function() {
     app.use(express.static(path.join(__dirname,'public')));
 });
 
-var server = require('http').createServer(app).listen(process.env.PORT || 5000);
+var server = require('http').createServer(app).listen(process.env.PORT || 8080);
 var io = require('socket.io').listen(server);
 
 io.set('log level',1);

@@ -206,7 +206,9 @@
             players: [],
             playerSize: 40,
             speedBullet: 400,
+            speedPlayer: 200,
             playerActive: 0,
+            canRun: true,
 
             onJoinClick: function() {
                 if (App.gameStatus === true) {
@@ -313,18 +315,113 @@
 
             runPlayerEvent: function(eventObject) {
 
+                var runAnimateFrameID;
+                var lastTime;
+
+                if ((eventObject.keyCode === 39) && (App.Player.canRun === true) ) {
+                    App.Player.canRun = false;
+                    runRightTank();
+                }
+                if ((eventObject.keyCode === 37) && (App.Player.canRun === true) ) {
+                    App.Player.canRun = false;
+                    runLeftTank();
+                }
+                if ((eventObject.keyCode === 38) && (App.Player.canRun === true) ) {
+                    App.Player.canRun = false;
+                    runTopTank();
+                }
+                if ((eventObject.keyCode === 40) && (App.Player.canRun === true) ) {
+                    App.Player.canRun = false;
+                    runBottomTank();
+                }
+
+                function runRightTank() {
+
+                    runAnimateFrameID = requestAnimationFrame(runRightTank);
+
+                    var now = Date.now();
+                    var dt = (now - (lastTime || now)) / 1000.0;
+                    lastTime = now;
+
+                    App.Player.players[App.Player.playerActive].course = 'right';
+
+                    if ( App.Player.checkStepRun(App.Player.players[App.Player.playerActive], App.Player.players).right() === true ) {
+                        App.Player.players[App.Player.playerActive].posX += App.Player.speedPlayer*dt;
+                        $('div.'+ App.Player.players[App.Player.playerActive].playerName ).css({'left': App.Player.players[App.Player.playerActive].posX + 'px'});
+                    }
+
+                    IO.socket.emit('playerRun', {player: App.Player.players[App.Player.playerActive], playerNum: App.Player.playerActive});
+
+                }
+                function runLeftTank() {
+
+                    runAnimateFrameID = requestAnimationFrame(runLeftTank);
+
+                    var now = Date.now();
+                    var dt = (now - (lastTime || now)) / 1000.0;
+                    lastTime = now;
+
+                    App.Player.players[App.Player.playerActive].course = 'left';
+
+                    if ( App.Player.checkStepRun(App.Player.players[App.Player.playerActive], App.Player.players).left() === true ) {
+                        App.Player.players[App.Player.playerActive].posX -= App.Player.speedPlayer*dt;
+                        $('div.'+ App.Player.players[App.Player.playerActive].playerName ).css({'left': App.Player.players[App.Player.playerActive].posX + 'px'});
+                    }
+
+                    IO.socket.emit('playerRun', {player: App.Player.players[App.Player.playerActive], playerNum: App.Player.playerActive});
+
+                }
+                function runTopTank() {
+
+                    runAnimateFrameID = requestAnimationFrame(runTopTank);
+
+                    var now = Date.now();
+                    var dt = (now - (lastTime || now)) / 1000.0;
+                    lastTime = now;
+
+                    App.Player.players[App.Player.playerActive].course = 'top';
+
+                    if ( App.Player.checkStepRun(App.Player.players[App.Player.playerActive], App.Player.players).top() === true ) {
+                        App.Player.players[App.Player.playerActive].posY -= App.Player.speedPlayer*dt;
+                        $('div.'+ App.Player.players[App.Player.playerActive].playerName ).css({'top': App.Player.players[App.Player.playerActive].posY + 'px'});
+                    }
+
+                    IO.socket.emit('playerRun', {player: App.Player.players[App.Player.playerActive], playerNum: App.Player.playerActive});
+
+                }
+                function runBottomTank() {
+
+                    runAnimateFrameID = requestAnimationFrame(runBottomTank);
+
+                    var now = Date.now();
+                    var dt = (now - (lastTime || now)) / 1000.0;
+                    lastTime = now;
+
+                    App.Player.players[App.Player.playerActive].course = 'bottom';
+
+                    if ( App.Player.checkStepRun(App.Player.players[App.Player.playerActive], App.Player.players).bottom() === true ) {
+                        App.Player.players[App.Player.playerActive].posY += App.Player.speedPlayer*dt;
+                        $('div.'+ App.Player.players[App.Player.playerActive].playerName ).css({'top': App.Player.players[App.Player.playerActive].posY + 'px'});
+                    }
+
+                    IO.socket.emit('playerRun', {player: App.Player.players[App.Player.playerActive], playerNum: App.Player.playerActive});
+
+                }
+
+                App.$doc.on('keyup', function(){
+                    App.Player.canRun = true;
+                    window.cancelAnimationFrame(runAnimateFrameID);
+                });
+
 
                 // event run right
-                if (eventObject.keyCode === 39 ) {
+                /*if (eventObject.keyCode === 39 ) {
                     $('div.'+ App.Player.players[App.Player.playerActive].playerName ).stop()
                                                                                       .css({'background-image': App.Player.$courseRight});
                     App.Player.players[App.Player.playerActive].course = 'right';
 
                     if ( App.Player.checkStepRun(App.Player.players[App.Player.playerActive], App.Player.players).right() === true ) {
                         App.Player.players[App.Player.playerActive].posX +=5;
-                        /*$('div.'+ App.Player.players[App.Player.playerActive].playerName ).css({'MozTransition': 'left 20 ms easy',
-                                                                                                'WebkitTransition': 'left 20ms easy',
-                                                                                                'left': App.Player.players[App.Player.playerActive].posX + 'px'});*/
 
                         $('div.'+ App.Player.players[App.Player.playerActive].playerName ).animate({
                             left: "+=5",
@@ -336,10 +433,10 @@
                     }
 
                     IO.socket.emit('playerRun', {player: App.Player.players[App.Player.playerActive], playerNum: App.Player.playerActive});
-                }
+                }*/
 
                 // event run left
-                if (eventObject.keyCode === 37 ) {
+                /*if (eventObject.keyCode === 37 ) {
                     $('div.'+ App.Player.players[App.Player.playerActive].playerName ).stop()
                                                                                       .css({'background-image': App.Player.$courseLeft});
                     App.Player.players[App.Player.playerActive].course = 'left';
@@ -355,10 +452,10 @@
                     }
                     IO.socket.emit('playerRun', {player: App.Player.players[App.Player.playerActive], playerNum: App.Player.playerActive});
 
-                }
+                }*/
 
                 // event run top
-                if (eventObject.keyCode === 38 ) {
+                /*if (eventObject.keyCode === 38 ) {
                     $('div.'+ App.Player.players[App.Player.playerActive].playerName ).stop()
                                                                                       .css({'background-image': App.Player.$courseTop});
                     App.Player.players[App.Player.playerActive].course = 'top';
@@ -373,10 +470,10 @@
                         });
                     }
                     IO.socket.emit('playerRun', {player: App.Player.players[App.Player.playerActive], playerNum: App.Player.playerActive});
-                }
+                }*/
 
                 // event run bottom
-                if (eventObject.keyCode === 40 ) {
+                /*if (eventObject.keyCode === 40 ) {
                     $('div.'+ App.Player.players[App.Player.playerActive].playerName ).stop()
                                                                                       .css({'background-image': App.Player.$courseBottom});
                     App.Player.players[App.Player.playerActive].course = 'bottom';
@@ -395,7 +492,7 @@
 
                 if (eventObject.keyCode === 32 ) {
                     App.Player.fire().createBullet( App.Player.players[App.Player.playerActive] );
-                }
+                }*/
 
 
                 // console.log(App.Player.players[1].posX);
