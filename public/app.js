@@ -290,6 +290,7 @@
             createPlayers: function(player, i, players) {
 
                 //if ( $("."+ player.playerName) ) { $("."+ player.playerName).remove(); }
+                console.log("Sdfsdfsdfs");
 
                 $("#gameFieldArea").append( $('<div/>').addClass('tankContainer ' + player.playerName)
                                                        .css({'left': player.posX + 'px',
@@ -488,11 +489,11 @@
                         });
                     }
                     IO.socket.emit('playerRun', {player: App.Player.players[App.Player.playerActive], playerNum: App.Player.playerActive});
-                }
+                }*/
 
                 if (eventObject.keyCode === 32 ) {
                     App.Player.fire().createBullet( App.Player.players[App.Player.playerActive] );
-                }*/
+                }
 
 
                 // console.log(App.Player.players[1].posX);
