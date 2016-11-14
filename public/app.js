@@ -290,7 +290,6 @@
             createPlayers: function(player, i, players) {
 
                 //if ( $("."+ player.playerName) ) { $("."+ player.playerName).remove(); }
-                console.log("Sdfsdfsdfs");
 
                 $("#gameFieldArea").append( $('<div/>').addClass('tankContainer ' + player.playerName)
                                                        .css({'left': player.posX + 'px',
